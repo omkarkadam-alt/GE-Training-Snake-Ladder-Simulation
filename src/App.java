@@ -4,6 +4,7 @@ public class App {
     public static final int OPTION_NO_MOVE = 0;
     public static final int OPTION_LADDER = 1;
     public static final int OPTION_SNAKE = 2;
+    public static final int WINNING_POSITION = 100;
 
     public static void main(String[] args) throws Exception {
         System.out.println("Snake and Ladder Game");
@@ -12,24 +13,38 @@ public class App {
 
         int currentPosition = START_POSITION;
 
-        int diceOutcome = (int)Math.floor((Math.random() * 6) + 1);
-        System.out.println("Outcome of Dice Roll is: " + diceOutcome);
+        while(currentPosition < WINNING_POSITION)
+        {
+            int diceOutcome = (int)Math.floor((Math.random() * 6) + 1);
+            System.out.println("Outcome of Dice Roll is: " + diceOutcome);
 
-        int currentOption = (int)Math.floor(Math.random() * 3);
+            int currentOption = (int)Math.floor(Math.random() * 3);
 
-        switch (currentOption) {
-            case OPTION_NO_MOVE:
-                currentPosition += 0;
-                System.out.println("Player stays in the same position");
-                break;
-            case OPTION_LADDER:
-                currentPosition += diceOutcome;
-                System.out.println("Player moves ahead by: " + diceOutcome);
-                break;
-            case OPTION_SNAKE:
-                currentPosition -= diceOutcome;
-                System.out.println("Player moves behind by: " + diceOutcome);
-                break;
+            switch (currentOption) {
+                case OPTION_NO_MOVE:
+                    System.out.println("Player stays in the same position");
+                    currentPosition += 0;
+                    break;
+
+                case OPTION_LADDER:
+                    System.out.println("Player moves ahead by: " + diceOutcome);
+                    currentPosition += diceOutcome;
+                    break;
+                    
+                case OPTION_SNAKE:
+                    if(currentPosition - diceOutcome < START_POSITION){
+                        System.out.println("Player moves behind by: " + currentPosition);
+                        currentPosition = START_POSITION;
+                    }
+                    else{
+                        System.out.println("Player moves behind by: " + diceOutcome);
+                        currentPosition -= diceOutcome;
+                    }
+                    break;
+            }
+
+            System.out.println("Current position: " + currentPosition);
         }
     }
 }
+
