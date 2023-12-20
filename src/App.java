@@ -6,5 +6,8 @@ public class App {
         int START_POSITION = 0;
 
         int currPosition = START_POSITION;
+
+        int diceOutcome = (int) Math.floor((Math.random() * 6) + 1);
+        System.out.println("Outcome of Dice Roll is: " + diceOutcome);
     }
 }
