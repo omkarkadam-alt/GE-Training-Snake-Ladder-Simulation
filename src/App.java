@@ -13,7 +13,7 @@ public class App {
 
         int currentPosition = START_POSITION;
 
-        while(currentPosition < WINNING_POSITION)
+        while(currentPosition != WINNING_POSITION)
         {
             int diceOutcome = (int)Math.floor((Math.random() * 6) + 1);
             System.out.println("Outcome of Dice Roll is: " + diceOutcome);
@@ -27,8 +27,12 @@ public class App {
                     break;
 
                 case OPTION_LADDER:
-                    System.out.println("Player moves ahead by: " + diceOutcome);
-                    currentPosition += diceOutcome;
+                    if(currentPosition + diceOutcome > 100){
+                        System.out.println("Player stays in the same place.");
+                    }else{
+                        System.out.println("Player moves ahead by: " + diceOutcome);
+                        currentPosition += diceOutcome;
+                    }
                     break;
                     
                 case OPTION_SNAKE:
