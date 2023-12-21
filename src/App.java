@@ -12,11 +12,14 @@ public class App {
         System.out.println();
 
         int currentPosition = START_POSITION;
+        int totalDiceRolls = 0;
 
         while(currentPosition != WINNING_POSITION)
         {
             int diceOutcome = (int)Math.floor((Math.random() * 6) + 1);
             System.out.println("Outcome of Dice Roll is: " + diceOutcome);
+
+            totalDiceRolls++;
 
             int currentOption = (int)Math.floor(Math.random() * 3);
 
@@ -49,6 +52,8 @@ public class App {
 
             System.out.println("Current position: " + currentPosition);
         }
+
+        System.out.println("Toal Dice rolls played: " + totalDiceRolls);
     }
 }
 
